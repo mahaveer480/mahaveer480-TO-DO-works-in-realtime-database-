@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="todolist.css">
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<script defer src="./init-firebase.js"></script>
+
+</head>
+<body >
+    <div id="maindiv">
+<header>
+<a>Massages</a>
+<a>Today's Task</a>
+<a>Last Actitivity</a>
+</header>
+<div id="buttondiv">
+
+    <div id="firstdiv">
+    <div id="todaystaskdiv">
+<h3>Today's Task</h3>
+<!-- <br /> -->
+<p id="todaydate"> Wednesday , 11 May</p>
+</div>
+<button onclick="newtask()" id="new_task" >+ New Task</button></div>
+<!-- bardiv -->
+<div id="bardiv">
+<p>All <p></p></p>
+<p>Deleted <p></p></p>
+<p>Done <p></p></p>
+<p>Cancel<p></p></p>
+</div>
+<div id="gigdivz">
+<video autoplay>
+    <source type="video/mp4" src="./assest/vecteezy_loading-circle-icon-loading-gif-loading-screen-gif-loading_8202362.mp4">
+    Your browser does not support the video tag.  
+
+</video>
+</div>
+</div>
+    </div>
+
+
+
+
+<section id="newinputs" style="display: none;">
+<div>
+    <h1>
+        Add Task
+    </h1>
+    <label for="input" >  Task Name</label>
+    <input type="text"  placeholder="Task Name"  id="taskName" />
+<br><br>
+
+    <label for="input">Descripition </label>
+    <input type="text" placeholder="Descripition" id="Descripition" />
+    <br><br>
+
+    <label for="input">Date</label>
+    <input type="date" id="date">
+
+<br><br>
+<div>
+    <img onclick="back()" src="./assest/back button.png" alt="back button"/>
+<button type="submit" onclick="save()">save</button>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="todolist.js"></script>
+</body>
+</html>
