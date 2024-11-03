@@ -1,11 +1,11 @@
 
 function updateDay() {
     const temp = new Date();
-    // Get the abbreviated weekday
+    
     const options = {
-        weekday: 'long', // 'long' gives full name like "Friday"
+        weekday: 'long',
         year: 'numeric',
-        month: 'long', // 'long' gives full month name like "November"
+        month: 'long',
         day: 'numeric',
      
     };    const formattedDay = temp.toLocaleString('en-US', options);
@@ -27,7 +27,9 @@ const back=()=>{
 
     inputs.style.display="none"
     maindiv.style.display="block"
-
+   document.getElementById("taskName").value = ""
+   document.getElementById("Descripition").value = ""
+   document.getElementById("date").value = ""
 
 }    
 
@@ -38,11 +40,40 @@ const back=()=>{
 
 var userId =  Math.random().toString(36).substring(2, 11);
 const save=()=>{
+
+
     var taskName=document.getElementById("taskName").value
     var Descripition=document.getElementById("Descripition").value
     var date=document.getElementById("date").value
     
-    
+    if (!taskName ){
+        document.getElementById("error").innerHTML="please write task name"
+     }
+     
+     else if (Descripition.leangth>10){
+         alert("fd")
+     }
+     
+      else if (!Descripition ){
+         document.getElementById("error").innerHTML="please write descripatoin"
+     }
+      else if (!date ){
+         document.getElementById("error").innerHTML="please write the date"
+     }
+     
+     
+     
+          else if (!taskName || !Descripition || !date){
+     
+                gigDiv.style.display = 'none';
+                var taskRef = database.ref("users/" + userId ); 
+                taskRef.remove()
+                return; // Exit the function early
+             }
+             
+
+
+else{
     function writeUserData(userId, taskName, Descripition, date) {
         
         console.log('User ID:', userId);
@@ -70,7 +101,7 @@ const save=()=>{
     
     writeUserData(userId, taskName, Descripition, date)
     window.location.reload()
-}
+}}
 
 
 
@@ -172,13 +203,7 @@ const createEntryBox = (userId, taskName, description, date) => {
        
        
        // Validation: Check if taskName, description, or date is empty
-       if (!taskName || !description || !date) {
-           gigDiv.style.display = 'none'; // Hide gigDiv if any field is empty
-           var taskRef = database.ref("users/" + userId ); // Adjust the path based on your structure
-           taskRef.remove()
-           return; // Exit the function early
-        }
-        
+
         const article = document.createElement('article');
         article.id = 'h4div';
         
@@ -196,7 +221,7 @@ const createEntryBox = (userId, taskName, description, date) => {
     const checkboxDiv = document.createElement('div');
     checkboxDiv.id = 'checkboxDiv';
     const tickImage = document.createElement('img');
-    tickImage.src = './assest/blue tic button.png'; // Fixed path typo
+    tickImage.src = './assest/blue tic button.png'; 
     tickImage.addEventListener('click', () => {
        title.style.textDecoration="line-through"
        title.style.fontWeight="900"
@@ -322,8 +347,8 @@ const createEntryBox = (userId, taskName, description, date) => {
     
     deleteButton.addEventListener('click', function() {
   
-   var conorm= confirm("Do you want to delelte data")
-if(conorm===true){
+   var conform= confirm("Do you want to delelte data")
+if(conform===true){
 
     var taskRef = database.ref("users/" + userId ); // Adjust the path based on your structure
     taskRef.remove()
@@ -331,11 +356,9 @@ if(conorm===true){
 window.location.reload()
 
         })
-        .catch(function(error) {
-            alert("Error deleting task: " + error.message);
-        });
+       
 }
-else{alert("data is not deleted")}
+
 window.location.reload()
 
 
