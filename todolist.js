@@ -63,12 +63,12 @@ const save=()=>{
      
      
      
-          else if (!taskName || !Descripition || !date){
+          else if (taskName==="" || Descripition ===""|| date ===""){
      
                 gigDiv.style.display = 'none';
                 var taskRef = database.ref("users/" + userId ); 
                 taskRef.remove()
-                return; // Exit the function early
+                return; 
              }
              
 
@@ -190,6 +190,16 @@ const ivz  = async () => {
     } catch (error) {
         console.error("Error loading data:", error);
     }
+
+
+    if (taskName ==="" || Descripition ==="" || date===""){
+   
+        gigDiv.style.display = 'none';
+        var taskRef = database.ref("users/" + userId ); 
+        taskRef.remove()
+        return; 
+     }
+    
 };
 const createEntryBox = (userId, taskName, description, date) => {
     const gigDiv = document.createElement('div');
@@ -198,9 +208,17 @@ const createEntryBox = (userId, taskName, description, date) => {
 
 
 
+       
+       
+    if (!taskName || !description || !date){
+     
+        gigDiv.style.display = 'none';
+        var taskRef = database.ref("users/" + userId ); 
+        taskRef.remove()
+        return; 
+     }
+     
 
-       
-       
        
        // Validation: Check if taskName, description, or date is empty
 
@@ -294,21 +312,31 @@ const createEntryBox = (userId, taskName, description, date) => {
                     var descriptionValue = snapshot.val().Descripition; 
         var dateValue = snapshot.val().date; 
 
-     
-
-
-
-
-
-
+        
+        
+        
+        
+        
+        
+        
         document.getElementById("taskName").value = taskNameValue;
         document.getElementById("Descripition").value = descriptionValue;
         document.getElementById("date").value = dateValue;
-            
+        
+        
+        
+          }    
+        
 
-
-
-        } else {
+        else if (taskName ==="" || Descripition ==="" || date===""){
+   
+              gigDiv.style.display = 'none';
+              var taskRef = database.ref("users/" + userId ); 
+              taskRef.remove()
+              return; 
+           }
+           
+     else {
             console.log("No data available");
           }
         }).catch((error) => {
