@@ -308,6 +308,11 @@ background-color:#DEE5D4;
 }
 
 
+#loder{
+height: 30%;
+width: 100%;
+}
+
 video{
     width: 100%;
 }
